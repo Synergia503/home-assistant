@@ -2,10 +2,6 @@
 
 This repo is an example for how to integrate third party add ons to Home Assistant that is installed using Kubernetes.
 
-## Todo
-
-- The `koenkk/zigbee2mqtt` image was set to `latest` which caused issues with the small Ikea remote. I have since downgraded the image version but at some point we'll need to update this which may also require updating the dongle firmware.
-
 ## Example config
 
 A sample `configuration.yaml`:
@@ -50,9 +46,3 @@ alexa:
 ## Example deployment to Helm
 
 `helm upgrade --install homeassistant ./ --namespace=homeassistant --create-namespace`
-
-## History
-
-- Need to move z2m away from raspberry-finn node as it's causing issues and restarts more often than other nodes. Needed because the Zigbee adapter is plugged into raspberry-finn.
-
-- Update - new pvc created (z2m-data-longhorn) which uses longhorn instead of local path which tied the z2m data to finn node. This has allowed the z2m data to be shared via longhorn, and made it easy to move z2m over to raspberry-rua.
